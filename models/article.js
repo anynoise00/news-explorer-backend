@@ -4,8 +4,7 @@ const { schemaUrlValidator } = require('../utils/helpers');
 const articleSchema = new mongoose.Schema({
   keyword: {
     type: String,
-    requir,
-    ed: true,
+    required: true,
   },
   title: {
     type: String,
@@ -38,8 +37,7 @@ const articleSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'user',
     },
-    required: true,
   },
 });
 
-module.exports = mongoose.model('user', articleSchema);
+module.exports = mongoose.model('article', articleSchema);

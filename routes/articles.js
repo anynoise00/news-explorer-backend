@@ -7,6 +7,7 @@ const {
   createArticle,
   deleteArticle,
 } = require('../controllers/articles');
+const { validateURL } = require('../utils/helpers');
 
 router.get('/', getArticles);
 
@@ -36,3 +37,5 @@ router.delete(
   }),
   deleteArticle
 );
+
+module.exports = router;

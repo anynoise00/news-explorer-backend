@@ -1,6 +1,7 @@
 const express = require('express');
 const { celebrate, Joi } = require('celebrate');
 const { createUser, login } = require('../controllers/users');
+const { checkAuthorization } = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -27,8 +28,9 @@ router.post(
   login
 );
 
-// check auth
+router.use(checkAuthorization);
 
 router.use('/users', require('./users'));
+router.use('/articles', require('./articles'));
 
 module.exports = router;
