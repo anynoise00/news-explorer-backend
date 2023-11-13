@@ -11,6 +11,7 @@ const cors = require('cors');
 const { errors } = require('celebrate');
 const { rateLimit } = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { errorHandler, routeNotFound } = require('./middlewares/handlers');
 
 const app = express();
 const router = require('./routes/router');
@@ -47,6 +48,7 @@ app.use(router);
 app.use(errorLogger);
 app.use(errors());
 
-// error handlers
+app.use(errorHandler);
+app.use(routeNotFound);
 
 app.listen(PORT);
