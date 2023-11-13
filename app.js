@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const { errors } = require('celebrate');
 const { rateLimit } = require('express-rate-limit');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 //const router = require('./routes/router');
@@ -39,13 +40,13 @@ app.use(limiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// log requests
+app.use(requestLogger);
 
 // unauthorized routes
 // check auth
 // authorized routes
 
-// log errors
+app.use(errorLogger);
 app.use(errors());
 
 // error handlers
