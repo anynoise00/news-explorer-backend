@@ -13,7 +13,7 @@ const { rateLimit } = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-//const router = require('./routes/router');
+const router = require('./routes/router');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -42,9 +42,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-// unauthorized routes
-// check auth
-// authorized routes
+app.use(router);
 
 app.use(errorLogger);
 app.use(errors());
