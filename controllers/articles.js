@@ -2,6 +2,10 @@ const Article = require('../models/article');
 
 const ResourceNotFoundError = require('../errors/resource-not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
+const {
+  articleNotFoundMsg,
+  articleDeletePermissionMsg,
+} = require('../utils/errorMessages');
 
 function getArticles(req, res, next) {
   Article.find({})
@@ -32,14 +36,10 @@ function deleteArticle(req, res, next) {
   const { id } = req.params;
 
   Article.findById(id)
-    .orFail(
-      new ResourceNotFoundError('O artigo solicitado não foi encontrado.')
-    )
+    .orFail(new ResourceNotFoundError(articleNotFoundMsg))
     .then((article) => {
       if (!article.owner.equals(req.user._id))
-        throw new ForbiddenError(
-          'Você não tem permissão para deletar artigos de outros usuários.'
-        );
+        throw new ForbiddenError(articleDeletePermissionMsg);
 
       Article.deleteOne(article).then((data) => res.send({ data }));
     })

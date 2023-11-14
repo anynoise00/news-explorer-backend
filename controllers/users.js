@@ -5,12 +5,11 @@ const { JWT_SECRET = 'dev-secret' } = process.env;
 
 const User = require('../models/user');
 const ResourceNotFoundError = require('../errors/resource-not-found-error');
+const { userNotLoggedMsg } = require('../utils/errorMessages');
 
 function getCurrentUser(req, res, next) {
   User.findById(req.user._id)
-    .orFail(
-      new ResourceNotFoundError('Não há um usuário logado na sessão atual.')
-    )
+    .orFail(new ResourceNotFoundError(userNotLoggedMsg))
     .then((user) => res.send({ data: user }))
     .catch(next);
 }

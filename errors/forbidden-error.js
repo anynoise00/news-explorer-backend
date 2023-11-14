@@ -1,5 +1,7 @@
+const { defaultForbiddenMsg } = require('../utils/errorMessages');
+
 class ForbiddenError extends Error {
-  constructor(message = 'Você não tem permissão para acessar este recurso.') {
+  constructor(message = defaultForbiddenMsg) {
     super(message);
     this.statusCode = 403;
   }

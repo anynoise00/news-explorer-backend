@@ -1,7 +1,7 @@
+const { defaultUnauthenticatedMsg } = require('../utils/errorMessages');
+
 class UnauthenticatedError extends Error {
-  constructor(
-    message = 'Você precisa estar logado para poder visitar esta pagina.'
-  ) {
+  constructor(message = defaultUnauthenticatedMsg) {
     super(message);
     this.statusCode = 401;
   }
