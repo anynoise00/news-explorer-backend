@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, DB_URL } = process.env;
 
 const express = require('express');
 const mongoose = require('mongoose');
@@ -16,7 +16,11 @@ const app = express();
 const router = require('./routes/router');
 const { rateLimiter } = require('./utils/helpers');
 
-mongoose.connect('mongodb://127.0.0.1:27017/newsdb');
+mongoose.connect(
+  NODE_ENV === 'production' && DB_URL
+    ? DB_URL
+    : 'mongodb://127.0.0.1:27017/testdb'
+);
 
 app.use(
   cors({
