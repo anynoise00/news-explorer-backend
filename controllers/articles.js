@@ -24,7 +24,7 @@ function createArticle(req, res, next) {
     image,
     owner: req.user._id,
   })
-    .then((Article) => res.send({ data: Article }))
+    .then((article) => res.send({ data: article }))
     .catch(next);
 }
 
@@ -35,12 +35,12 @@ function deleteArticle(req, res, next) {
     .orFail(
       new ResourceNotFoundError('O artigo solicitado não foi encontrado.')
     )
-    .then((Article) => {
-      if (!Article.owner.equals(req.user._id))
+    .then((article) => {
+      if (!article.owner.equals(req.user._id))
         throw new ForbiddenError(
           'Você não tem permissão para deletar artigos de outros usuários.'
         );
-      Article.deleteOne(Article).then((data) => res.send({ data }));
+      Article.deleteOne(article).then((data) => res.send({ data }));
     })
     .catch(next);
 }

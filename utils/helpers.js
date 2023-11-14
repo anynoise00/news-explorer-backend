@@ -1,3 +1,5 @@
+const validator = require('validator');
+
 const urlRegex = /http[s]?:\/\/(www\.)?.+(\.).+(\/.)*\/?/i;
 
 const schemaUrlValidator = {
