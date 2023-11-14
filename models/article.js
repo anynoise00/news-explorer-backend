@@ -33,10 +33,8 @@ const articleSchema = new mongoose.Schema({
     validate: schemaUrlValidator,
   },
   owner: {
-    type: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-    },
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
   },
 });
 

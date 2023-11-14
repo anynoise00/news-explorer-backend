@@ -4,7 +4,7 @@ const ResourceNotFoundError = require('../errors/resource-not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
 
 function getArticles(req, res, next) {
-  Article.find({ owner: req.user._id })
+  Article.find({})
     .sort({ createdAt: -1 })
     .orFail(new ResourceNotFoundError())
     .then((articles) => res.send(articles))
@@ -40,6 +40,7 @@ function deleteArticle(req, res, next) {
         throw new ForbiddenError(
           'Você não tem permissão para deletar artigos de outros usuários.'
         );
+
       Article.deleteOne(article).then((data) => res.send({ data }));
     })
     .catch(next);
