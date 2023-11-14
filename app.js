@@ -9,17 +9,12 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const { errors } = require('celebrate');
-const { rateLimit } = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { errorHandler, routeNotFound } = require('./middlewares/handlers');
 
 const app = express();
 const router = require('./routes/router');
-
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  limit: 100,
-});
+const { rateLimiter } = require('./utils/helpers');
 
 mongoose.connect('mongodb://127.0.0.1:27017/newsdb');
 
@@ -37,7 +32,7 @@ app.options(
 
 app.use(helmet());
 
-app.use(limiter);
+app.use(rateLimiter);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

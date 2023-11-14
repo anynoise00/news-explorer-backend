@@ -1,7 +1,7 @@
-const { defaultUnauthenticatedMsg } = require('../utils/errorMessages');
+const { messageDefaultUnauthenticated } = require('../utils/constants');
 
 class UnauthenticatedError extends Error {
-  constructor(message = defaultUnauthenticatedMsg) {
+  constructor(message = messageDefaultUnauthenticated) {
     super(message);
     this.statusCode = 401;
   }

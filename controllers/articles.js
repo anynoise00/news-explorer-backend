@@ -3,9 +3,11 @@ const Article = require('../models/article');
 const ResourceNotFoundError = require('../errors/resource-not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
 const {
-  articleNotFoundMsg,
-  articleDeletePermissionMsg,
-} = require('../utils/errorMessages');
+  messageArticleSaved,
+  messageArticleNotFound,
+  messageArticleDeletePermission,
+  messageArticleDeleted,
+} = require('../utils/constants');
 
 function getArticles(req, res, next) {
   Article.find({})
@@ -28,7 +30,9 @@ function createArticle(req, res, next) {
     image,
     owner: req.user._id,
   })
-    .then((article) => res.send({ data: article }))
+    .then((article) =>
+      res.status(201).send({ message: messageArticleSaved, data: article })
+    )
     .catch(next);
 }
 
@@ -36,12 +40,14 @@ function deleteArticle(req, res, next) {
   const { id } = req.params;
 
   Article.findById(id)
-    .orFail(new ResourceNotFoundError(articleNotFoundMsg))
+    .orFail(new ResourceNotFoundError(messageArticleNotFound))
     .then((article) => {
       if (!article.owner.equals(req.user._id))
-        throw new ForbiddenError(articleDeletePermissionMsg);
+        throw new ForbiddenError(messageArticleDeletePermission);
 
-      Article.deleteOne(article).then((data) => res.send({ data }));
+      Article.deleteOne(article).then((data) =>
+        res.send({ message: messageArticleDeleted })
+      );
     })
     .catch(next);
 }

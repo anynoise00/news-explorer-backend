@@ -1,7 +1,7 @@
-const { defaultNotFoundMsg } = require('../utils/errorMessages');
+const { messageDefaultNotFound } = require('../utils/constants');
 
 class ResourceNotFoundError extends Error {
-  constructor(message = defaultNotFoundMsg) {
+  constructor(message = messageDefaultNotFound) {
     super(message);
     this.statusCode = 404;
   }

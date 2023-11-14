@@ -5,11 +5,15 @@ const { JWT_SECRET = 'dev-secret' } = process.env;
 
 const User = require('../models/user');
 const ResourceNotFoundError = require('../errors/resource-not-found-error');
-const { userNotLoggedMsg } = require('../utils/errorMessages');
+const {
+  messageUserNotLogged,
+  messageUserCreated,
+  messageUserLogin,
+} = require('../utils/constants');
 
 function getCurrentUser(req, res, next) {
   User.findById(req.user._id)
-    .orFail(new ResourceNotFoundError(userNotLoggedMsg))
+    .orFail(new ResourceNotFoundError(messageUserNotLogged))
     .then((user) => res.send({ data: user }))
     .catch(next);
 }
@@ -25,7 +29,9 @@ function createUser(req, res, next) {
         password: hash,
         name,
       })
-        .then((user) => res.send({ data: user }))
+        .then((user) =>
+          res.status(201).send({ message: messageUserCreated, data: user })
+        )
         .catch(next);
     })
     .catch(next);
@@ -39,7 +45,7 @@ function login(req, res, next) {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
         expiresIn: '7d',
       });
-      res.send({ token });
+      res.send({ message: messageUserLogin, token });
     })
     .catch(next);
 }

@@ -1,4 +1,5 @@
 const validator = require('validator');
+const { rateLimit } = require('express-rate-limit');
 
 const urlRegex = /http[s]?:\/\/(www\.)?.+(\.).+(\/.)*\/?/i;
 
@@ -14,7 +15,13 @@ const validateURL = (value, helpers) => {
   return helpers.error('string.uri');
 };
 
+const rateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 100,
+});
+
 module.exports = {
   schemaUrlValidator,
   validateURL,
+  rateLimiter,
 };
