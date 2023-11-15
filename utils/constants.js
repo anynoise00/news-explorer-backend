@@ -9,7 +9,7 @@ const messageDefaultForbidden =
   'Você não tem permissão paraAcessar este recurso.';
 const messageDefaultNotFound = 'O recurso solicitado não foi encontrado.';
 
-const messageUserNotLogged = 'Não háUmUsuário logado na sessãoAtual.';
+const messageUserNotLogged = 'Não há um usuário logado na sessão atual.';
 const messageWrongCredentials = 'E-mail ou senha incorretos';
 
 const messageArticleNotFound = 'OArtigo solicitado não foi encontrado.';
