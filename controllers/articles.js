@@ -45,7 +45,7 @@ function deleteArticle(req, res, next) {
       if (!article.owner.equals(req.user._id))
         throw new ForbiddenError(messageArticleDeletePermission);
 
-      Article.deleteOne(article).then((data) =>
+      Article.deleteOne(article).then(() =>
         res.send({ message: messageArticleDeleted })
       );
     })
