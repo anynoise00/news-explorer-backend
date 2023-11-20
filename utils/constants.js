@@ -4,7 +4,7 @@ const messageUserCreated = 'Usuário registrado com sucesso.';
 const messageUserLogin = 'Logado com sucesso.';
 
 const messageDefaultUnauthenticated =
-  'Você precisa estar logado para poder visitar esta pagina.';
+  'Você precisa estar logado para poder acessar este recurso.';
 const messageDefaultForbidden =
   'Você não tem permissão paraAcessar este recurso.';
 const messageDefaultNotFound = 'O recurso solicitado não foi encontrado.';
