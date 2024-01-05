@@ -1,6 +1,6 @@
 # News Explorer - Backend
 
-O backend do site [NewsExploder](https://api.newsexplorer.jumpingcrab.com/), um website onde os usuários podem pesquisar por diversas notícias e salvar suas favoritas.
+O backend do site [NewsExplorer](https://newsexplorer.jumpingcrab.com/), um website onde os usuários podem pesquisar por diversas notícias e salvar suas favoritas.
 
 Você pode fazer requisições à API usando o endereço https://api.newsexplorer.jumpingcrab.com/
 
