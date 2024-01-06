@@ -10,7 +10,9 @@ const {
 } = require('../utils/constants');
 
 function getArticles(req, res, next) {
-  Article.find({})
+  Article.find({
+    owner: req.user._id,
+  })
     .sort({ createdAt: -1 })
     .orFail(new ResourceNotFoundError())
     .then((articles) => res.send(articles))
