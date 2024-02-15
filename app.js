@@ -26,10 +26,10 @@ const corsOptions = {
   origin: '*',
 };
 
-app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
-//app.use(helmet());
+app.use(helmet());
 
 app.use(rateLimiter);
 app.use(bodyParser.json());
