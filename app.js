@@ -24,13 +24,7 @@ mongoose.connect(
 
 app.use(
   cors({
-    origin: '*',
-  })
-);
-app.options(
-  '*',
-  cors({
-    origin: '*',
+    origin: 'http://localhost:3000',
   })
 );
 
