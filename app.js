@@ -22,11 +22,8 @@ mongoose.connect(
     : 'mongodb://127.0.0.1:27017/testdb'
 );
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
+app.use(cors());
+app.options('*', cors());
 
 app.use(helmet());
 
