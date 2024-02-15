@@ -23,7 +23,7 @@ mongoose.connect(
 );
 
 const corsOptions = {
-  origin: true,
+  origin: '*',
 };
 
 app.use(cors(corsOptions));
