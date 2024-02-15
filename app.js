@@ -23,7 +23,7 @@ mongoose.connect(
 );
 
 const corsOptions = {
-  origin: 'https://newsexplorer.anynoise.dev',
+  origin: 'https://newsexplorer.anynoise.dev/',
 };
 
 app.options('*', cors(corsOptions));
