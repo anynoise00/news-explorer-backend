@@ -22,17 +22,12 @@ mongoose.connect(
     : 'mongodb://127.0.0.1:27017/testdb'
 );
 
-app.use(
-  cors({
-    origin: 'https://newsexplorer.anynoise.dev/',
-  })
-);
-app.options(
-  '*',
-  cors({
-    origin: 'https://newsexplorer.anynoise.dev/',
-  })
-);
+const corsOptions = {
+  origin: true,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(helmet());
 
