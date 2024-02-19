@@ -1,14 +1,17 @@
 # News Explorer - Backend
+[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://github.com/anynoise00/news-explorer-frontend/blob/main/LICENSE)  
 
-O backend do site [NewsExplorer](https://newsexplorer.jumpingcrab.com/), um website onde os usuários podem pesquisar por diversas notícias e salvar suas favoritas.
+## About
+The API for the NewsExplorer website, a website where users can search for news of any topic and bookmark the ones they like. 
 
-Você pode fazer requisições à API usando o endereço https://api.newsexplorer.jumpingcrab.com/
+In this project I made a REST API to interact with the News API, protected routes from unaunthenticated users, validated requests, and logged requests and errors.
+This is the back-end of the project that was made as the final project from TripleTen's online web development bootcamp.
 
-As seguintes requisições estão disponíveis:
+The front-end repository for this project can be viewed [here](https://github.com/anynoise00/news-explorer-frontend).
 
-- GET /users/me - para obter os dados do usuário que está logado no momento;
-- GET /articles - para obter os artigos salvos pelo usuário
-- POST /articles - para salvar um artigo
-- DELETE /articles - para remover um artigo salvo
-- POST /signup - para registrar um novo usuário
-- POST /signin - para se logar com as credenciais de um usuário
+### Click [here](https://newsexplorer.anynoise.dev) to visit the website.
+
+## Technologies
+The following tools where used for building this project:
+- [Express](https://expressjs.com/)
+- JavaScript
